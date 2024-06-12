@@ -76,10 +76,15 @@ console.log(tableHTML.innerHTML);
 const tableBodyHTML=document.getElementById
 ("table-body");
 
-console.dir(tableBodyHTML);
+// console.dir(tableBodyHTML);
 
+function renderUsers(arrayUsers){ 
 
-users.forEach((user) =>{
+//cada vez que llamamos la funcion renderusers linpiamos el body y volvemos a pintar
+
+tableBodyHTML.innerHTML= '';
+
+arrayUsers.forEach((user) =>{
    tableBodyHTML.innerHTML += `<tr>
                       <td class="user-image">
                           <img src= "${user.image}" alt="${user.image} avatar">
@@ -90,6 +95,58 @@ users.forEach((user) =>{
                       <td class="user-actions"></td>
                     </tr>`
 })
+
+}
+
+renderUsers(users)
+
+function inputsearch(evt){
+      //tenemos que tomar lo que la persona a escrito en el input
+      console.log(evt.target.value)
+      const search=evt.target.value.toLowercase()
+      //luego deberiamos recorer el arrayy filtrar por todosaquellos usuarioscuyo nombre coisidan con la busqueda
+      //deveriamos pintar la tabla de nuevo con los resultados de la busqueda
+      const filteredUsers=users.filter((urs)=>{
+        //filrter para devolver un usuario yo tengo que asegurarme de retornar un true bajo sierta condicion
+        if (usr.fullname.toLowercase.includes(search)) {
+          return true;
+        }
+        return false;
+        
+      })
+      renderUsers(filteredUsers)
+}
+
+function sortAsc(){
+  const collador=new Intl.collador(undefined,{sensitivity:"base"})
+// metodo 2
+  user.sort((a,b) =>{
+    return collador.compare(b.fullname, a.fullname)
+
+
+    function sortAsc(){
+      const collador=new Intl.collador(undefined,{sensitivity:"base"})
+    // metodo 2
+      user.sort((a,b) =>{ 
+        return collador.compare(a.fullname, b.fullname)
+      }
+      )}
+     
+    
+
+    // // metodo 1
+
+    // if (b.fullname.toLowercase() < b.fullname.toLowercase()){
+    //   return 1;
+    // }
+
+    // if (a.fullname.toLowercase() < a.fullname.toLowercase()){
+    //   return -1;
+    // }
+
+    // return 0
+  })
+}
 
 
 
